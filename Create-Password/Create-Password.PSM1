@@ -1,0 +1,5 @@
+Function Create-Password {
+
+Param ()
+
+}
