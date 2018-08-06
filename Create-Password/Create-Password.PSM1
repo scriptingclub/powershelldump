@@ -63,19 +63,21 @@ $AsciiArray += $AsciiChar
 }}
 
 #Concatonate Salt and words into a single string
-$PasswordPartial = $WordList[0]
+$WordListNoSpace = ($WordList[0] -replace ' ','')
+$PasswordPartial = $WordListNoSpace
 $AsciiLength = $AsciiArray.Length
 $Counter = 0
 While ($Counter -lt $AsciiLength) {
 $PasswordPartial += $AsciiArray[$Counter]
 ++$Counter
 }
-$PasswordString = $PasswordPartial + $WordList[1]
+$PasswordString = $PasswordPartial + ($WordList[1] -replace ' ','')
 #If clipboard switch is specified, send output to clipboard in plaintext
 
 #If secure string switch is specified, send output to secure string variable. Add logic to create variable name and save to secure string.
 
 #Else, echo string unless otherwise specified
+$PasswordString = ($PasswordString -replace ' ','')
 echo "Your new password is $PasswordString"
 }
 ###End Ben's Powershell Function####################################################################################################
