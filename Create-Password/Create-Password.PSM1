@@ -24,25 +24,53 @@ if ($urban -eq $true)
 {
 #Make 2 Random Numbers for Urban Dictionary API
 
-$FirstDefidComplete = '0'
-$defid1 = Get-Random -Minimum 0 -Maximum 1200000
+$FirstDefidComplete = [int]0
+$WordList = @()
 
-#Curl Urban Dictionary and get two payloads
+while ($FirstDefidComplete -lt [int]2)
 
-#Select the appropriate word from payload and save each to a variable
+    {$defid = Get-Random -Minimum 0 -Maximum 1200000
 
+    #Curl Urban Dictionary for a payload & Select the appropriate word from payload and save each to a variable
+
+    $payload = (Invoke-WebRequest -Uri "http://api.urbandictionary.com/v0/define?defid=$defid" | ConvertFrom-Json).list.word
+
+        if ($payload.length -ne 0) {
+                                    $WordList += $payload
+                                    ++$FirstDefidComplete}
+
+    }
 #If Lentgh is specified then make sure the two words aren't too long. If too long then add logic to rerun until size is appropriate
 
 #Randomly Generate Salt of the appropriate length, only if specified
 
-#Concatonate Salt and words into a single string
+$SaltDefault = 0
+If ($length -gt 0) {echo "I forgot to write the part about what to do if the length switch is specifide."}
 
+else { $AsciiArray = @()
+
+while ($SaltDefault -lt 5 ) {
+$AsciiCharValue = Get-Random -Minimum 33 -Maximum 64
+$AsciiChar = [char]$AsciiCharValue
+$AsciiArray += $AsciiChar
+++$SaltDefault
+}}
+
+#Concatonate Salt and words into a single string
+$PasswordPartial = $WordList[0]
+$AsciiLength = $AsciiArray.Length
+$Counter = 0
+While ($Counter -lt $AsciiLength) {
+$PasswordPartial += $AsciiArray[$Counter]
+++$Counter
+}
+$PasswordString = $PasswordPartial + $WordList[1]
 #If clipboard switch is specified, send output to clipboard in plaintext
 
 #If secure string switch is specified, send output to secure string variable. Add logic to create variable name and save to secure string.
 
 #Else, echo string unless otherwise specified
-
+echo "Your new password is $PasswordString"
 }
 ###End Ben's Powershell Function####################################################################################################
 
