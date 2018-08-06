@@ -45,7 +45,13 @@ while ($FirstDefidComplete -lt [int]2)
 #Randomly Generate Salt of the appropriate length, only if specified
 
 $SaltDefault = 0
-If ($length -gt 0) {echo "I forgot to write the part about what to do if the length switch is specifide."}
+If ($length -gt 0) {$LengthCounter = 0
+while ($LengthCounter -lt $length.length)
+{
+echo "I forgot to write the part calculating the length of the salt."
+++$LengthCounter
+}
+}
 
 else { $AsciiArray = @()
 
