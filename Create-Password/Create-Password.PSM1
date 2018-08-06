@@ -24,6 +24,8 @@ if ($urban -eq $true)
 {
 #Make 2 Random Numbers for Urban Dictionary API
 
+$defid1 = Get-Random -Minimum 0 -Maximum
+
 #Curl Urban Dictionary and get two payloads
 
 #Select the appropriate word from payload and save each to a variable
