@@ -42,9 +42,9 @@ while ($FirstDefidComplete -lt [int]2)
     }
 #If Lentgh is specified then make sure the two words aren't too long. If too long then add logic to rerun until size is appropriate
 #####
-##### Need code here!
+
 #####
-#Randomly Generate Salt of the appropriate length, only if specified
+#Randomly Generate Salt of the appropriate length
 
 $SaltDefault = 0
 If ($length -gt 0) {$LengthCounter = 0
